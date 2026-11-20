@@ -79,5 +79,5 @@ hint:
 	endif
 
 	phase	0
-	include	"Sonic CD/1204/97.asm"
+	include	"Sonic CD/1204/98.asm"
 	dephase

@@ -584,15 +584,15 @@ smpsModSet macro wait,speed,change,step
 
 ; Turn on Modulation
 smpsModOn macro type
-	if SonicDriverVer>=3
-		if "type"<>""
-			dc.b	$F4,type
-		else
-			dc.b	$F4,$80
-		endif
-	else
+;	if SonicDriverVer>=3
+;		if "type"<>""
+;			dc.b	$F4,type
+;		else
+;			dc.b	$F4,$80
+;		endif
+;	else
 		dc.b	$F1
-	endif
+;	endif
 	endm
 
 ; F2 - End of channel

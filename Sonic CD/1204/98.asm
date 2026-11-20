@@ -1,28 +1,29 @@
 S98:
-	dw	byte_DAC
-	db	1,1
-	HD	80h,6,byte_D93,0,2
+	smpsHeaderStartSong 3
+	smpsHeaderVoice     byte_DAC
+	smpsHeaderTempoSFX  $01
+	smpsHeaderChanSFX   $01
+	smpsHeaderSFXChannel cFM6, byte_D93,	$00, $02
 
 byte_D93:
-	db	FEV,0
-	db	80h,1
-	db	FVR,3,1,5Dh,0Fh
-	db	0B0h,0Ah
-	db	0F1h
-	db	FEV,1
+	smpsSetvoice        $00
+	dc.b	nRst, $01
+	smpsModSet          $03, $01, $5D, $0F
+	dc.b	$B0, $0A
+	smpsModOn
+	smpsSetvoice        $01
 
 byte_DA1:
-	db	0BDh,2
-	db	CMVADD,1
-	db	CMTAB
-	db	CMREPT,0,19h
-	dw	byte_DA1
-	db	CMEND
+	dc.b	$BD, $02
+	smpsAlterVol        $01
+	dc.b	smpsNoAttack
+	smpsLoop            $00, $19, byte_DA1
+	smpsStop
 
 byte_DAC:
-	db	20h
-	db	36h,35h,30h,31h,0DFh,0DFh,9Fh,9Fh,7,6,9,6
-	db	7,6,6,8,2Fh,1Fh,1Fh,0FFh,16h,30h,13h,80h
-	db	20h
-	db	31h,33h,30h,31h,9Fh,9Fh,9Fh,9Fh,7,6,9,6
-	db	7,6,6,8,2Fh,1Fh,1Fh,0FFh,19h,23h,11h,80h
+	dc.b	$20
+	dc.b	$36,$35,$30,$31,$DF,$DF,$9F,$9F,7,6,9,6
+	dc.b	7,6,6,8,$2F,$1F,$1F,$FF,$16,$30,$13,$80
+	dc.b	$20
+	dc.b	$31,$33,$30,$31,$9F,$9F,$9F,$9F,7,6,9,6
+	dc.b	7,6,6,8,$2F,$1F,$1F,$FF,$19,$23,$11,$80
